@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { checkWinner } from "./checkWinner";
+import checkWinner from "./checkWinner";
 
 import "./styles.css";
 
@@ -8,7 +8,6 @@ const CHIP_SIZE = 90;
 const PLAYER1_COLOR = "red";
 const PLAYER2_COLOR = "yellow";
 
-// const initialPlays = [1, 2, 1, 3, 2, 5, 4, 0, 6, 3, 3, 4, 6, 5, 4, 6, 4];
 const initialPlays = [];
 
 class Chip extends React.Component {
@@ -17,7 +16,7 @@ class Chip extends React.Component {
     const style = {
       left: `${column * CHIP_SIZE + 4}px`,
       top: `${(5 - row) * CHIP_SIZE + 4}px`,
-      backgroundColor: color,
+      backgroundColor: color
     };
     return (
       <div
@@ -51,7 +50,7 @@ class Connect4 extends React.Component {
   state = {
     plays: initialPlays,
     selectedColumn: 3,
-    winner: checkWinner(initialPlays),
+    winner: checkWinner(initialPlays)
   };
 
   componentDidMount() {
@@ -131,11 +130,11 @@ class Connect4 extends React.Component {
     switch (e.key) {
       case "a":
         return this.setState({
-          selectedColumn: Math.max(selectedColumn - 1, 0),
+          selectedColumn: Math.max(selectedColumn - 1, 0)
         });
       case "d":
         return this.setState({
-          selectedColumn: Math.min(selectedColumn + 1, 6),
+          selectedColumn: Math.min(selectedColumn + 1, 6)
         });
       case "Enter":
         return this.onColumnClick(selectedColumn);

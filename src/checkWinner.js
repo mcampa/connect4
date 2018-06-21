@@ -1,9 +1,9 @@
-const checkChip = (table, col, row, direction) => {
+function checkChip(grid, col, row, direction) {
   const [lat, long] = direction;
-  const value = table[col][row];
+  const value = grid[col][row];
 
   for (let i = 1; i <= 3; i++) {
-    const column = table[col + i * lat];
+    const column = grid[col + i * lat];
     if (!column) {
       return false;
     }
@@ -13,9 +13,9 @@ const checkChip = (table, col, row, direction) => {
   }
 
   return true;
-};
+}
 
-const getWinners = (column, row, direction) => {
+function getWinners(column, row, direction) {
   const [lat, long] = direction;
   const winners = [`${column}-${row}`];
   for (let i = 1; i <= 3; i++) {
@@ -26,13 +26,13 @@ const getWinners = (column, row, direction) => {
   }
 
   return winners;
-};
+}
 
-export const checkWinner = plays => {
-  const data = [...Array(7)].map(() => []);
+function checkWinner(plays) {
+  const grid = [...Array(7)].map(() => []);
 
   plays.forEach((column, index) => {
-    data[column].push(index % 2);
+    grid[column].push(index % 2);
   });
 
   const possibleDirections = [
@@ -40,13 +40,13 @@ export const checkWinner = plays => {
     [1, 1], // northeast
     [0, 1], // north
     [-1, 1], // northwest
-    [-1, 0], // west
+    [-1, 0] // west
   ];
 
-  for (let column = 0; column < data.length; column++) {
-    for (let row = 0; row < data[column].length; row++) {
+  for (let column = 0; column < grid.length; column++) {
+    for (let row = 0; row < grid[column].length; row++) {
       for (let direction of possibleDirections) {
-        if (checkChip(data, column, row, direction)) {
+        if (checkChip(grid, column, row, direction)) {
           const winners = getWinners(column, row, direction);
           return { winners, column, row, direction };
         }
@@ -55,4 +55,6 @@ export const checkWinner = plays => {
   }
 
   return false;
-};
+}
+
+export default checkWinner;
