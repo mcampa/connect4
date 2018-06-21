@@ -1,0 +1,71 @@
+.Connect4 {
+  font-family: sans-serif;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.frame {
+  border: 10px solid rgba(0, 0, 120, 0.99);
+  width: calc(90px * 7);
+  position: relative;
+  display: flex;
+  margin-top: 90px;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+}
+
+.hole {
+  width: 90px;
+  height: 90px;
+  background: -webkit-radial-gradient(
+    50% 50%,
+    circle,
+    transparent 58%,
+    rgba(0, 0, 120, 0.99) 60%
+  );
+}
+
+.Chip {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  border: 1px solid #333;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  z-index: -1;
+  transition: opacity 0.3s;
+}
+
+.Chip.placeholder {
+  opacity: 0.5;
+}
+
+.Chip.isWinner {
+  animation: pulse 0.5s infinite;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+button {
+  padding: 10px 20px;
+  font-weight: 700;
+  font-size: 18x;
+  margin: 20px;
+}
